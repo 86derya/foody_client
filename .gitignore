@@ -3,10 +3,7 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
-src/*
-public/*
-build/static/css/*.map
-build/static/js/*.map
+
 
 # User-specific files
 *.suo
