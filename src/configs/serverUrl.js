@@ -1,3 +1,3 @@
-const serverURL = 'http://localhost:8080';
+const serverURL = 'https://foodydederiaserver.herokuapp.com/';
 
 export default serverURL;
