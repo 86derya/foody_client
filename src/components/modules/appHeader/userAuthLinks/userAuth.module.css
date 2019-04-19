@@ -1,0 +1,31 @@
+.wrap {
+  display: flex;
+  position: absolute;
+  right: 100px;
+  width: 140px;
+  justify-content: space-around;
+}
+
+.link {
+  display: inline-block;
+  cursor: pointer;
+  padding: 2px 4px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: rgb(107, 163, 146);
+  font-size: 12px;
+  background-color: transparent;
+}
+.link_active {
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: rgb(215, 236, 138);
+  border-radius: 10px;
+  box-shadow: 0 2px 2px 0 rgba(18, 58, 8, 0.2),
+    0 6px 20px 0 rgba(10, 148, 141, 0.19);
+}
+.link:hover {
+  transform: scale(1.1);
+  color: rgb(6, 68, 104);
+}
