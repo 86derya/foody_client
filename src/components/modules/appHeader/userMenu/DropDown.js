@@ -14,7 +14,7 @@ class DropDown extends PureComponent {
 
   render() {
     return (
-      <div className={styles.userMenu__container}>
+      <div className={styles.drop_down__container}>
         <ul className={styles.userMenu__list}>
           {userMenuNavItems.map(item => (
             <li key={item.name} className={styles.userMenu__item}>

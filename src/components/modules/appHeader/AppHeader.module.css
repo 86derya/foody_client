@@ -1,7 +1,12 @@
+a {
+  text-decoration: none;
+}
+
 .header {
   display: block;
   margin: 0 auto;
   padding: 0;
+  min-height: 80px;
   background-color: rgb(165, 235, 165);
   box-shadow: 0 4px 8px 0 rgba(18, 58, 8, 0.2),
     0 6px 20px 0 rgba(6, 53, 9, 0.19);
@@ -30,7 +35,7 @@
   padding: 0;
   text-align: center;
   width: 80%;
-  max-width: 600px;
+  max-width: 700px;
 }
 .navigation_list {
   display: flex;
@@ -42,7 +47,6 @@
 .navigation_item {
   display: inline-block;
   list-style: none;
-  /* padding: 4px 20px; */
 }
 .navigation_link {
   text-decoration: none;
@@ -66,9 +70,8 @@
   margin: 0;
   padding: 0;
   position: relative;
-  top: -10px;
+
   justify-content: space-around;
-  min-width: 20%;
 }
 
 .authLinks__link {
@@ -101,8 +104,8 @@
   margin-right: 100px;
   padding: 10px 10px 20px;
   position: absolute;
-  top: 56px;
-  width: 200px;
+  bottom: -140px;
+  min-width: 200px;
   border-radius: 10px;
   background-color: rgb(165, 235, 165);
   box-shadow: 0 4px 8px 0 rgba(18, 58, 8, 0.2),
@@ -110,20 +113,30 @@
 }
 .user_menu__container {
   display: flex;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
-  max-width: 200px;
-  /* position: relative; */
-  right: 100px;
   align-items: center;
   justify-content: space-around;
   cursor: pointer;
   z-index: 900;
+  min-width: 20%;
 }
-.loginedSpan {
-  position: absolute;
-  top: -18px;
-  right: 0;
+.ShowUserMenuArrow_hide,
+.ShowUserMenuArrow_show {
+  display: inline-block;
+  content: '';
+  width: 24px;
+  height: 24px;
+  background-image: url('https://img.icons8.com/plasticine/100/000000/circled-chevron-up.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.ShowUserMenuArrow_show {
+  transform: rotate(180deg);
+}
+.WelcomeSpan {
+  margin-right: 10px;
   font-style: italic;
   color: rgb(100, 93, 93);
 }
@@ -179,24 +192,29 @@
 .cart_link__container {
   position: fixed;
   right: 6px;
-  top: 35px;
+  top: 42px;
   display: flex;
   z-index: 999;
+  text-decoration: none;
 }
 .cart_link__container:hover {
+  transform: scale(1.1);
 }
 
 .cart_link__amount {
-  position: absolute;
+  position: relative;
+  padding: 0 4px;
   background-color: #dae71f;
   width: 30px;
   height: 30px;
+  left: 4px;
+  top: -14px;
   border-radius: 50%;
   color: rgb(24, 8, 83);
-  font-weight: 500;
-  line-height: 30px;
+  font-weight: 700;
+  line-height: 20px;
   text-align: center;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .cart_link__image {
@@ -205,72 +223,12 @@
 }
 
 @media (min-width: 1200px) {
-  .header {
-    display: block;
-    margin: 0 0 20px 0;
-    padding: 0;
-    background-color: rgb(165, 235, 165);
-    box-shadow: 0 4px 8px 0 rgba(18, 58, 8, 0.2),
-      0 6px 20px 0 rgba(6, 53, 9, 0.19);
-  }
-  a {
-    box-sizing: border-box;
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-  }
-  .header__container {
-    display: block;
-    margin: 0 auto;
-    padding: 0;
-    display: flex;
-    position: relative;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1100px;
-  }
   .site_logo {
-    box-sizing: border-box;
-    display: inline-block;
-    margin: 0;
-    padding: 0;
     width: 90px;
     height: 90px;
   }
-  .navigation_container {
-    box-sizing: border-box;
-    display: block;
-    margin: 0 auto;
-    padding: 0;
-    text-align: center;
-  }
-  .navigation_list {
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0;
-  }
-  .navigation_item {
-    list-style: none;
-    padding: 4px 20px;
-  }
   .navigation_link {
-    text-decoration: none;
-    text-transform: uppercase;
-    color: rgb(60, 63, 71);
     font-size: 18px;
-    font-weight: bold;
-  }
-  .navigation_alink {
-    text-transform: uppercase;
-    color: rgb(179, 101, 11);
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-  }
-  .navigation_link:hover {
-    color: rgb(156, 104, 6);
   }
   .authLinks__wrap {
     display: flex;
@@ -281,38 +239,11 @@
   }
 
   .authLinks__link {
-    display: inline-block;
-    cursor: pointer;
-    padding: 2px 4px;
-    text-decoration: none;
-    text-transform: uppercase;
-    color: rgb(107, 163, 146);
-    font-size: 12px;
-    background-color: transparent;
+    font-size: 14px;
   }
-  .authLinks__link_active {
-    display: inline-block;
-    cursor: pointer;
-    text-decoration: none;
-    background-color: rgb(215, 236, 138);
-    border-radius: 10px;
-    box-shadow: 0 2px 2px 0 rgba(18, 58, 8, 0.2),
-      0 6px 20px 0 rgba(10, 148, 141, 0.19);
-  }
-  .authLinks__link:hover {
-    transform: scale(1.1);
-    color: rgb(6, 68, 104);
-  }
+
   .drop_down__container {
-    margin-right: 100px;
-    padding: 10px 10px 20px;
-    position: absolute;
-    top: 56px;
-    width: 200px;
-    border-radius: 10px;
-    background-color: rgb(165, 235, 165);
-    box-shadow: 0 4px 8px 0 rgba(18, 58, 8, 0.2),
-      0 6px 20px 0 rgba(6, 53, 9, 0.19);
+    top: 50px;
   }
   .user_menu__container {
     display: flex;
@@ -322,94 +253,22 @@
     position: relative;
     right: 100px;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     cursor: pointer;
     z-index: 900;
-  }
-  .loginedSpan {
-    position: absolute;
-    top: -18px;
-    right: 0;
-    font-style: italic;
-    color: rgb(100, 93, 93);
-  }
-  .user_avatar {
-    margin: 0;
-    margin-right: 10px;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-  }
-  .user_name {
-    text-transform: uppercase;
-    color: rgb(6, 58, 161);
-    font-size: 16px;
-  }
-  .userMenu__list {
-    margin: 0 auto;
-    padding: 0;
-    list-style: none;
-  }
-  .userMenu__item {
-    display: block;
-    padding: 10px;
-  }
-  .userMenu__link {
-    text-decoration: none;
-    text-transform: uppercase;
-    line-height: 15px;
-    color: black;
-  }
-  .userMenu__link:hover {
-    color: rgb(211, 133, 31);
-  }
-  .signOutBtn {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    right: 10px;
-    bottom: 6px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    outline: none;
-    background-image: url('https://img.icons8.com/dotty/80/000000/exit.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .signOutBtn:hover {
-    bottom: 8px;
-  }
-  .cart_link__container {
-    position: absolute;
-    right: 40px;
-    display: flex;
-    /* right: 60px; */
-  }
-  .cart_link__container:hover {
-    position: absolute;
-    right: 40px;
-    display: flex;
-    top: 24px;
   }
 
   .cart_link__amount {
     position: absolute;
-    background-color: #dae71f;
     width: 30px;
     height: 30px;
-    border-radius: 50%;
-    color: rgb(24, 8, 83);
-    font-weight: 500;
+    left: -12px;
+    font-weight: 700;
     line-height: 30px;
-    text-align: center;
     font-size: 30px;
   }
 
   .cart_link__image {
-    width: 40px;
-    height: auto;
+    width: 50px;
   }
 }

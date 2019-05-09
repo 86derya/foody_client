@@ -44,6 +44,15 @@ export default class UserMenu extends Component {
     const DefaultAvatar = (
       <img className={styles.user_avatar} src={avatar} alt="avatar" />
     );
+    const ShowUserMenuArrow = (
+      <span
+        className={
+          isDropDownOpen
+            ? styles.ShowUserMenuArrow_hide
+            : styles.ShowUserMenuArrow_show
+        }
+      />
+    );
 
     const userName = <span className={styles.user_name}>{user.nickName}</span>;
     return (
@@ -53,8 +62,9 @@ export default class UserMenu extends Component {
           onClick={this.toggleDropDown}
           ref={this.userNavContainer}
         >
+          {ShowUserMenuArrow}
+          <span className={styles.WelcomeSpan}>Welcome, </span>
           {user.avatar ? UserAvatar : DefaultAvatar}
-          <span className={styles.loginedSpan}>Welcome, </span>
           {userName}
           {isDropDownOpen && (
             <DropDown onSignOut={onSignOut} history={history} />

@@ -1,7 +1,7 @@
 .dish_page {
   display: block;
   box-sizing: border-box;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   padding: 0 20px 20px;
   position: relative;
@@ -14,17 +14,10 @@
   left: 0;
   right: 0;
   padding: 0;
-  /* max-height: 100%; */
-  max-width: 1100px;
-
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: nowrap;
-  align-items: flex-start;
 }
 .dish_details {
   display: block;
-  margin: 0;
+  margin: 0 auto 10px;
   padding: 10px 20px;
   position: relative;
   width: 100%;
@@ -60,7 +53,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  padding: 0 20px;
+  padding: 0 6px;
   width: 100%;
 }
 
@@ -128,13 +121,14 @@
   padding: 6px 10px;
   position: absolute;
   bottom: 0;
-  left: 200px;
+  right: 0;
   color: #fff;
   background-color: rgb(94, 145, 29);
   border: 0;
   border-radius: 10px;
   outline: none;
   cursor: pointer;
+  font-size: 16px;
 }
 .submitCommentBtn:hover {
   transform: scale(1.1);
@@ -252,12 +246,14 @@
 
 .goBackBtn {
   display: block;
+  margin: 0;
   padding: 0;
-  position: absolute;
-  top: 50vh;
-  left: 10px;
-  width: 50px;
-  height: 50px;
+  width: 36px;
+  height: 36px;
+  position: fixed;
+  padding: 0;
+  top: 36vh;
+  left: 0px;
   border-radius: 50%;
   cursor: pointer;
   border: none;
@@ -303,4 +299,46 @@
 .addToCartBtn:active {
   background-image: url('../cart/$assets/shopping-cart-active.png');
   transform: translateY(4px);
+}
+@media (min-width: 1200px) {
+  .dish_page {
+    display: block;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+  }
+  .container {
+    position: relative;
+    margin: 0 auto;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+  }
+
+  .dish__image {
+    width: 300px;
+    height: auto;
+  }
+
+  .dish__comments_container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+    width: 100%;
+  }
+
+  .comments__form {
+    width: 100%;
+    position: relative;
+  }
+
+  .goBackBtn {
+    width: 50px;
+    height: 50px;
+  }
 }
