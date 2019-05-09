@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import withAuth from '../../../hocs/withAuth';
 import userMenuNavItems from '../$configs/userMenuNavConfig';
-import styles from './UserMenu.module.css';
+import styles from '../AppHeader.module.css';
 
 class DropDown extends PureComponent {
   handleSignOut = () => {
@@ -14,7 +14,7 @@ class DropDown extends PureComponent {
 
   render() {
     return (
-      <div className={styles.container}>
+      <div className={styles.drop_down__container}>
         <ul className={styles.userMenu__list}>
           {userMenuNavItems.map(item => (
             <li key={item.name} className={styles.userMenu__item}>

@@ -7,7 +7,11 @@ import formConfig from './$configs/userAccountFormConfig.json';
 
 import styles from './Account.module.css';
 
-const Account = ({ onSubmit, user, onChange }) => {
+const Account = ({
+  // onSubmit,
+  user,
+  onChange,
+}) => {
   const input = formConfig.map(el => (
     <label key={el.label} className={styles.label}>
       {el.label}
@@ -50,7 +54,13 @@ const Account = ({ onSubmit, user, onChange }) => {
             @: <span className={styles.email_details}> {user.email}</span>
           </p>
         </div>
-        <form className={styles.form} onSubmit={onSubmit}>
+        <form
+          className={styles.form}
+          onSubmit={() =>
+            // eslint-disable-next-line no-alert
+            alert('this option is under development')
+          }
+        >
           {input}
           <button type="submit">update</button>
         </form>

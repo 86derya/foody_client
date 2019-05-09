@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 
 import Spinner from '../../spinner';
 import DishItem from './DishView';
-// import CommentsListView from './CommentsListView';
 import styles from './MenuItem.module.css';
 import ratingOptions from './$configs/ratingOptions';
 import * as api from './$services/api';
-import getUserName from './duck/menuItemSelectors';
+import { menuItemSelectors } from './duck';
 import routes from '../../../configs/routes';
 import { cartActions } from '../cart/duck';
 
@@ -81,11 +80,8 @@ class DishContainer extends Component {
   };
 
   handleGoBack = () => {
-    const { history, location } = this.props;
+    const { history, location, category } = this.props;
 
-    const {
-      dishItem: { category },
-    } = this.state;
     return location.state
       ? history.push(location.state.from)
       : history.push({
@@ -204,7 +200,6 @@ class DishContainer extends Component {
                   )}
                 </button>
                 {showComments && (
-                  // <CommentsListView comments={commentsToView} />//TODO
                   <ul className={styles.comments_list}> {commentItem} </ul>
                 )}
               </div>
@@ -216,7 +211,8 @@ class DishContainer extends Component {
   }
 }
 const mapStateToProps = state => ({
-  userName: getUserName(state),
+  userName: menuItemSelectors.getUserName(state),
+  category: menuItemSelectors.getFilterByCategory(state),
 });
 const mapDispatchToProps = {
   onAddToCart: cartActions.addToCart,

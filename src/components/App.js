@@ -5,9 +5,10 @@ import { connect } from 'react-redux';
 import Spinner from './spinner';
 import Header from './modules/appHeader';
 import routes from '../configs/routes';
-// import Cart from './modules/cart';
 import PrivateRoute from './privateRoute';
 import { getCurrentUser } from './session/sessionOperations';
+// eslint-disable-next-line no-unused-vars
+import styles from './index.module.css';
 
 const AsyncMenuPage = lazy(() =>
   import('../pages/Menu' /* webpackChunkName: "Menu-page" */),
