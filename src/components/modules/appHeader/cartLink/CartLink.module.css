@@ -1,17 +1,17 @@
-.container {
+.cart_link__container {
   position: absolute;
   right: 40px;
   display: flex;
   /* right: 60px; */
 }
-.container:hover {
+.cart_link__container:hover {
   position: absolute;
   right: 40px;
   display: flex;
   top: 24px;
 }
 
-.amount {
+.cart_link__amount {
   position: absolute;
   background-color: #dae71f;
   width: 30px;
@@ -24,7 +24,7 @@
   font-size: 30px;
 }
 
-.image {
+.cart_link__image {
   width: 40px;
   height: auto;
 }

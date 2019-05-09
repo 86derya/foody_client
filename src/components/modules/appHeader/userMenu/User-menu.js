@@ -1,7 +1,7 @@
 import React, { Component, createRef } from 'react';
 
 import DropDown from './DropDown';
-import styles from './UserMenu.module.css';
+import styles from '../AppHeader.module.css';
 import avatar from '../../userAccount/$assets/avatar.png';
 
 export default class UserMenu extends Component {

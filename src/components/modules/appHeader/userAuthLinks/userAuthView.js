@@ -4,21 +4,21 @@ import { NavLink } from 'react-router-dom';
 import withAuth from '../../../hocs/withAuth';
 
 import routes from '../../../../configs/routes';
-import styles from './userAuth.module.css';
+import styles from '../AppHeader.module.css';
 
 const userAuth = () => (
-  <div className={styles.wrap}>
+  <div className={styles.authLinks__wrap}>
     <NavLink
       to={routes.SIGN_UP}
-      className={styles.link}
-      activeClassName={styles.link_active}
+      className={styles.authLinks__link}
+      activeClassName={styles.authLinks__link_active}
     >
       Sign up
     </NavLink>
     <NavLink
       to={routes.SIGN_IN}
-      className={styles.link}
-      activeClassName={styles.link_active}
+      className={styles.authLinks__link}
+      activeClassName={styles.authLinks__link_active}
     >
       Log in
     </NavLink>
