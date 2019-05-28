@@ -13,7 +13,7 @@ import {
   filterByCategoryReducer,
   filterByNameReducer,
 } from '../../modules/menu/duck/reducers';
-
+import dishListBufferReducer from '../../modules/menu/addNewMenuItem/duck/dishListBufferReducer';
 import cartReducer from '../../modules/cart/duck/reducers';
 
 const rootPersistConfig = {
@@ -37,6 +37,7 @@ const rootReducer = combineReducers({
   isLoading: loadingReducer,
   error: errorReducer,
   session: persistReducer(sessionPersistConfig, sessionReducer),
+  bufferDishList: dishListBufferReducer,
 });
 
 export default persistReducer(rootPersistConfig, rootReducer);

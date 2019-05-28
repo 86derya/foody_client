@@ -37,7 +37,7 @@ export default class Modal extends Component {
     return (
       <div className={styles.backdrop} ref={this.containerRef}>
         <div className={styles.modal}>
-          <div> {children} </div>
+          <> {children} </>
           <CloseModalBtn />
         </div>
       </div>

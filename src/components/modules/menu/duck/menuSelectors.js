@@ -6,6 +6,7 @@ const getAvailableCategories = state => state.availableCategories;
 const getFilterByCategory = state => state.filterByCategory;
 const getFilterByName = state => state.filterByName;
 const getIsLoading = state => state.isLoading;
+const getBufferDishList = state => state.bufferDishList;
 
 const getAllDishes = createSelector(
   [getDishesIds, getDishesEntities],
@@ -23,6 +24,10 @@ const getFilteredByNameDishes = createSelector(
 const getVisibleDishes = state =>
   getFilterByName(state) ? getFilteredByNameDishes(state) : getAllDishes(state);
 
+const getDishListwithBuffer = state =>
+  getBufferDishList(state).length >= 1
+    ? [...getVisibleDishes(state), ...getBufferDishList(state)]
+    : getVisibleDishes(state);
 export default {
   getFilterByName,
   getAvailableCategories,
@@ -30,4 +35,6 @@ export default {
   getFilteredByNameDishes,
   getVisibleDishes,
   getIsLoading,
+  getBufferDishList,
+  getDishListwithBuffer,
 };

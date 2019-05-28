@@ -19,6 +19,7 @@ const Menu = ({
   filterByName,
   isLoading,
   onAddToCart,
+  bufferDishList,
 }) => (
   <>
     {isLoading ? (
@@ -42,6 +43,7 @@ const Menu = ({
           match={match}
           location={location}
           onAddToCart={onAddToCart}
+          bufferList={bufferDishList}
         />
       </div>
     )}

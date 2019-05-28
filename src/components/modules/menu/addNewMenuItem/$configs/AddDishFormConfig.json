@@ -4,28 +4,32 @@
     "name": "name",
     "type": "text",
     "placeholder": "Dish name...",
-    "autocomplete": "nope"
+    "autocomplete": "nope",
+    "required": true
   },
   {
     "tag": "textarea",
     "name": "description",
     "type": "text",
     "placeholder": "Description...",
-    "autocomplete": "off"
+    "autocomplete": "off",
+    "required": true
   },
   {
     "tag": "input",
     "name": "image",
     "type": "url",
-    "placeholder": "Image...",
-    "autocomplete": "off"
+    "placeholder": "http://",
+    "autocomplete": "off",
+    "required": true
   },
   {
     "tag": "input",
     "name": "category",
     "type": "text",
     "placeholder": "Category...",
-    "autocomplete": "off"
+    "autocomplete": "off",
+    "required": true
   },
   {
     "tag": "input",
@@ -33,13 +37,15 @@
     "type": "text",
     "placeholder": "Add ingredient...",
     "autocomplete": "off",
-    "button": "button"
+    "button": "button",
+    "required": false
   },
   {
     "tag": "input",
     "name": "price",
     "type": "text",
     "placeholder": "Price...",
-    "autocomplete": "off"
+    "autocomplete": "off",
+    "required": true
   }
 ]
