@@ -8,7 +8,7 @@ const MenuGridCard = ({ name, image, price, description, currency }) => {
   const dishName = <p className={styles.menu_card_title}> {name} </p>;
   const dishPrice = (
     <p className={styles.menu_card_price}>
-      Price: {price} {currency}
+      Price: {price} {currency || 'UAH'}
     </p>
   );
   const dishDescr = (
@@ -17,7 +17,7 @@ const MenuGridCard = ({ name, image, price, description, currency }) => {
 
   return (
     <Fragment>
-      {dishImg}
+      {image ? dishImg : null}
       {dishName}
       {dishDescr}
       {dishPrice}

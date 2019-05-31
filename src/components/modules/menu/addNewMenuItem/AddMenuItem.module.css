@@ -10,6 +10,7 @@
   width: 60vw;
   background-color: rgb(143, 209, 143);
   font-family: 'Hind Guntur', serif;
+  z-index: 1000;
 }
 .addDish__page_title {
   display: block;

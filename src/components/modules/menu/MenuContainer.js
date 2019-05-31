@@ -9,6 +9,7 @@ import Menu from './MenuView';
 import { menuOperations, menuSelectors, menuActions } from './duck';
 import addMenuItemActions from './addNewMenuItem/duck/addMenuItemActions';
 import { cartActions } from '../cart/duck';
+import styles from './Menu.module.css';
 
 const getCategoryFromProps = props =>
   queryString.parse(props.location.search).category;
@@ -49,21 +50,11 @@ class MenuContainer extends Component {
 
   render() {
     const { isModalOpen } = this.state;
-    const { dishList, bufferDishList } = this.props;
-    console.log(bufferDishList);
-    console.log(dishList);
-    // const dishesToDisplay =
-    //   bufferDishList.length > 0
-    //     ? [...dishList, ...bufferDishList]
-    //     : [...dishList];
-
+    // const { dishList, bufferDishList } = this.props;
     const { availableCategories } = this.props;
 
     return (
       <>
-        <button type="button" onClick={this.handleModalOpen}>
-          +
-        </button>
         {isModalOpen ? (
           <Modal onClose={this.handleModalOpen}>
             <AddMenuItem
@@ -71,7 +62,13 @@ class MenuContainer extends Component {
               onGoBack={this.handleModalOpen}
             />
           </Modal>
-        ) : null}
+        ) : (
+          <button
+            type="button"
+            className={styles.addDishBtn}
+            onClick={this.handleModalOpen}
+          />
+        )}
         <Menu {...this.props} />
       </>
     );

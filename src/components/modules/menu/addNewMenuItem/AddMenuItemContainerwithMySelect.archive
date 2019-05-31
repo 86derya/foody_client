@@ -22,12 +22,17 @@ const INITIAL_STATE = {
   availableingredients: [],
 };
 
+// let ingredientsContainer = [];
+// const filterIngredients = (ingredients, filter) =>
+//   ingredients.filter(ingredient => ingredient !== filter);
+
 class AddDishContainer extends Component {
   state = {
     ...INITIAL_STATE,
   };
 
   componentDidMount = () => {
+    // ingredientsContainer = [];
     this.toggleLoading();
     apiGetAllIngredients().then(response => {
       this.setState({
@@ -40,10 +45,15 @@ class AddDishContainer extends Component {
         ],
       });
       this.toggleLoading();
+      // console.log(this.state.availableingredients);
     });
   };
 
-  handleIngredientsChange = (newValue = '') => {
+  handleIngredientsChange = (newValue = '', actionMeta = '') => {
+    // console.group('Value Changed');
+    // console.log(newValue);
+    console.log(`action: ${actionMeta.action}`);
+    console.groupEnd();
     this.setState({
       selectedIngredients: newValue.map(i => i.value),
     });
@@ -67,12 +77,32 @@ class AddDishContainer extends Component {
     });
   };
 
+  // handleAddIngredient = () => {
+  //   const { ingredient } = this.state;
+  //   if (!ingredient || ingredientsContainer.includes(ingredient)) return;
+  //   ingredientsContainer.push(ingredient);
+
+  //   this.setState({
+  //     selectedIngredients: ingredientsContainer,
+  //     ingredient: '',
+  //   });
+  // };
+
+  // handleDeleteIngredient = selectedIngrToRemove => {
+  //   const { selectedIngredients } = this.state;
+  //   ingredientsContainer = filterIngredients(
+  //     selectedIngredients,
+  //     selectedIngrToRemove,
+  //   );
+
+  //   this.setState({
+  //     selectedIngredients: ingredientsContainer,
+  //   });
+  // };
+
   handleReset = () => {
-    const { availableingredients } = this.state;
-    this.setState({
-      ...INITIAL_STATE,
-      availableingredients,
-    });
+    this.setState({ ...INITIAL_STATE });
+    // ingredientsContainer = [];
   };
 
   handleSubmit = e => {
@@ -89,6 +119,7 @@ class AddDishContainer extends Component {
     if (!category) {
       return alert('specify category');
     }
+    console.log('beforesubmit', selectedIngredients);
     this.toggleLoading();
     return apiPostMenuItem({
       name,
@@ -99,6 +130,7 @@ class AddDishContainer extends Component {
       category,
     })
       .then(response => {
+        // console.log('response', response.data);
         if (response.status === 201) {
           onAddNewMenuItem(response.data.menuItem);
           this.toggleLoading();
@@ -152,6 +184,9 @@ class AddDishContainer extends Component {
   }
 }
 
+// const mapStateToProps = state => ({
+
+// });
 const mapDispatchToProps = {
   onAddNewMenuItem: addMenuItemActions.fetchSuccess,
 };

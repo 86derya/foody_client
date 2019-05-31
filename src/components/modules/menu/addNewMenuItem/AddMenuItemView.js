@@ -1,5 +1,7 @@
 import React from 'react';
-import Select from 'react-select';
+import Select, { Creatable } from 'react-select';
+// import Creatable from 'react-select';
+// import CreatableSelect from 'react-select/creatable';
 import styles from './AddMenuItem.module.css';
 import AddDishFormConfig from './$configs/AddDishFormConfig.json';
 import DishPreview from '../menuGrid/MenuGridCardView';
@@ -9,69 +11,56 @@ const AddDishForm = ({
   onChange,
   onReset,
   onSubmit,
-  addIngredient,
-  onDeleteIngredient,
   onCategorySelect,
   selectedCategory,
   categoryOptions,
+  handleIngredientsChange,
 }) => {
+  const { availableingredients, selectedIngredients } = props;
   const input = AddDishFormConfig.map(el => (
     <li key={el.name} className={styles.inputs__item}>
       <label className={styles.label}>
         {el.name}
-        {el.name === 'category' ? (
-          <Select
-            className={styles.select}
-            options={categoryOptions}
-            onChange={option => onCategorySelect(option.categoryId)}
-            value={selectedCategory}
-            placeholder="Select Category..."
-            required
-          />
-        ) : (
-          <el.tag
-            onChange={onChange}
-            name={el.name}
-            type={el.type}
-            value={props[el.name]}
-            className={styles.input}
-            autoComplete={el.autoComplete}
-            placeholder={el.placeholder}
-            required={el.required}
-          />
-        )}
-        {el.button && (
-          <div>
-            <div className={styles.ingredients__container}>
-              <el.button
-                type="button"
-                onClick={addIngredient}
-                className={styles.addIngredient__btn}
-              >
-                +
-              </el.button>
-              <ul className={styles.ingredients__list}>
-                Ingredients Summary:
-                {props.ingredients &&
-                  props.ingredients.map(ingr => (
-                    <li key={ingr}>
-                      {ingr}
-                      <button
-                        type="button"
-                        onClick={() => onDeleteIngredient(ingr)}
-                      >
-                        X
-                      </button>
-                    </li>
-                  ))}
-              </ul>
-            </div>
-          </div>
-        )}
+        {(() => {
+          switch (el.name) {
+            case 'category':
+              return (
+                <Select
+                  className={styles.select}
+                  options={categoryOptions}
+                  onChange={option => onCategorySelect(option.categoryId)}
+                  value={selectedCategory}
+                  placeholder="Select Category..."
+                  required
+                />
+              );
+            case 'ingredients':
+              return (
+                <Creatable
+                  isMulti
+                  onChange={handleIngredientsChange}
+                  options={availableingredients}
+                />
+              );
+            default:
+              return (
+                <el.tag
+                  onChange={onChange}
+                  name={el.name}
+                  type={el.type}
+                  // eslint-disable-next-line react/destructuring-assignment
+                  value={props[el.name]}
+                  className={styles.input}
+                  autoComplete={el.autoComplete}
+                  placeholder={el.placeholder}
+                  required={el.required}
+                />
+              );
+          }
+        })()}
       </label>
     </li>
   ));
-  const { ingredients } = props;
 
   return (
     <>
@@ -80,6 +69,7 @@ const AddDishForm = ({
         <div className={styles.form_container}>
           <form className={styles.addDish_form} onSubmit={onSubmit}>
             <ul className={styles.inputs__list}>{input}</ul>
+
             <div className={styles.controls__container}>
               <button
                 type="button"
@@ -96,25 +86,23 @@ const AddDishForm = ({
         </div>
         <div className={styles.preview_container}>
           <DishPreview {...props} />
-          <p className={styles.dish__ingredients}>Ингридиенты:</p>
-          <ul className={styles.dish__ingredients_list}>
-            {ingredients &&
-              ingredients.map(item => (
-                // eslint-disable-next-line no-underscore-dangle
-                <li className={styles.dish__ingredients_item} key={item}>
-                  {ingredients[ingredients.length - 1] === item
-                    ? item
-                    : `${item},`}
-                </li>
-              ))}
-          </ul>
-          {/* {image && (
-            <img
-              src={image}
-              alt="dishImage"
-              className={styles.addDish__image}
-            />
-          )} */}
+
+          {selectedIngredients.length > 0 && (
+            <>
+              {/* <p className={styles.dish__ingredients}>:</p> */}
+              <ul className={styles.dish__ingredients_list}>
+                Ингридиенты
+                {selectedIngredients.map(item => (
+                  <li className={styles.dish__ingredients_item} key={item}>
+                    {selectedIngredients[selectedIngredients.length - 1] ===
+                    item
+                      ? `${item}`
+                      : `${item},`}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </div>
       </div>
     </>

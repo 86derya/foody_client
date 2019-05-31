@@ -33,7 +33,7 @@
   },
   {
     "tag": "input",
-    "name": "ingredient",
+    "name": "ingredients",
     "type": "text",
     "placeholder": "Add ingredient...",
     "autocomplete": "off",
