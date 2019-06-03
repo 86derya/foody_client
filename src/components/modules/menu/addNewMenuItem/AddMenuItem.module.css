@@ -2,6 +2,10 @@
   margin: 0;
   padding: 0;
 }
+.modal-opened {
+  height: 100%;
+  overflow: hidden;
+}
 
 .addDish_container {
   display: flex;

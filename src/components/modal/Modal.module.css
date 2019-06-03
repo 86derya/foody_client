@@ -2,8 +2,9 @@
   margin: 0;
   padding: 0;
 }
-body {
-  /* overflow-y: hidden; */
+.modal-opened {
+  height: 100%;
+  overflow: hidden;
 }
 
 .backdrop {

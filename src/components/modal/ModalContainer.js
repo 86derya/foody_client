@@ -7,11 +7,17 @@ export default class Modal extends Component {
   componentDidMount() {
     window.addEventListener('click', this.handleCloseModal);
     window.addEventListener('keydown', this.handleESCWindow);
+    // antiBodyScrolling
+    document.body.style.overflow = 'hidden';
+    document.body.classList.add('modal-opened');
   }
 
   componentWillUnmount() {
     window.removeEventListener('click', this.handleCloseModal);
     window.removeEventListener('keydown', this.handleESCWindow);
+    // !antiBodyScrolling
+    document.body.style.overflow = 'auto';
+    document.body.classList.remove('modal-opened');
   }
 
   handleCloseModal = ({ target }) => {
