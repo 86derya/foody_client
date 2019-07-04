@@ -1,7 +1,5 @@
 import React from 'react';
 import Select, { Creatable } from 'react-select';
-// import Creatable from 'react-select';
-// import CreatableSelect from 'react-select/creatable';
 import styles from './AddMenuItem.module.css';
 import AddDishFormConfig from './$configs/AddDishFormConfig.json';
 import DishPreview from '../menuGrid/MenuGridCardView';
@@ -15,6 +13,7 @@ const AddDishForm = ({
   selectedCategory,
   categoryOptions,
   handleIngredientsChange,
+  imgFileRef,
 }) => {
   const { availableingredients, selectedIngredients } = props;
   const input = AddDishFormConfig.map(el => (
@@ -42,6 +41,25 @@ const AddDishForm = ({
                   options={availableingredients}
                 />
               );
+            case 'image': {
+              return el.selectOptions.map(i => (
+                <i.tag
+                  key={i.name}
+                  onChange={onChange}
+                  name={i.name}
+                  type={i.type}
+                  // eslint-disable-next-line react/destructuring-assignment
+                  value={
+                    i.name !== 'imageFile' ? props[i.name] : props[i.name.name]
+                  }
+                  ref={i.name === 'imageFile' ? imgFileRef : null}
+                  className={styles.input}
+                  autoComplete={i.autoComplete}
+                  placeholder={i.placeholder}
+                  required={i.required}
+                />
+              ));
+            }
             default:
               return (
                 <el.tag

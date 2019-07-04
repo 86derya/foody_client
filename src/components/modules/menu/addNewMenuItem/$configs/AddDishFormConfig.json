@@ -16,12 +16,22 @@
     "required": true
   },
   {
-    "tag": "input",
     "name": "image",
-    "type": "url",
-    "placeholder": "http://",
-    "autocomplete": "off",
-    "required": true
+    "selectOptions": [
+      {
+        "tag": "input",
+        "name": "imageUrl",
+        "type": "url",
+        "placeholder": "http://",
+        "autocomplete": "off",
+        "required": false
+      },
+      {
+        "tag": "input",
+        "name": "imageFile",
+        "type": "file"
+      }
+    ]
   },
   {
     "tag": "input",

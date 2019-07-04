@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-state */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-alert */
 import React, { Component } from 'react';
@@ -10,11 +11,14 @@ import addMenuItemActions from './duck/addMenuItemActions';
 import apiGetAllIngredients from './$services/apiGetAllIngredients';
 import Spinner from '../../../spinner';
 
+// const formData = new FormData();
 const INITIAL_STATE = {
   name: '',
   price: '',
   description: '',
-  image: '',
+  imageUrl: '',
+  imageFile: '',
+  imagePreviewfromFile: '',
   category: '',
   ingredient: '',
   selectedIngredients: [],
@@ -23,9 +27,21 @@ const INITIAL_STATE = {
 };
 
 class AddDishContainer extends Component {
+  // constructor(props) {
+  //   super(props)
+
+  //   // Create the ref
+  //   this.textInput = React.createRef();
+  //   this.state = {
+  //     value: ''
+  //   }
+  // }
+
   state = {
     ...INITIAL_STATE,
   };
+
+  imgFileRef = React.createRef();
 
   componentDidMount = () => {
     this.toggleLoading();
@@ -55,10 +71,65 @@ class AddDishContainer extends Component {
   };
 
   handleChange = e => {
+    e.preventDefault();
     const { name, value } = e.target;
-    this.setState({
-      [name]: value,
-    });
+    switch (name) {
+      case 'imageUrl': {
+        console.log(e.target);
+        if (this.imgFileRef.current.files[0]) {
+          console.log(this.imgFileRef.current.files.length);
+          this.imgFileRef.current.value = '';
+          // this.imgFileRef.current.files.entries();
+          // this.imgFileRef.current.files[0] = null;
+          // console.log(this.imgFileRef.current.files.length);
+        }
+        // this.imgFileRef.current.files.length
+        //   ? (this.imgFileRef.current.files.length = 0)
+        //   : null;
+
+        // console.log(this.imgFileRef.current.files.length);
+        this.setState({
+          imageFile: '',
+          imagePreviewfromFile: '',
+          [name]: value,
+        });
+        break;
+      }
+      case 'imageFile': {
+        const reader = new FileReader();
+        const imageFile = e.currentTarget.files[0];
+        // const { imageFile } = this.state;
+        // handle "file is not selected"
+        if (!imageFile) {
+          this.setState({
+            imageFile: '',
+            imagePreviewfromFile: '',
+          });
+          return;
+        }
+        // handle file is selected
+
+        reader.onloadend = () => {
+          this.setState({
+            imageUrl: '',
+            imageFile,
+            imagePreviewfromFile: reader.result,
+          });
+
+          // console.log(imageFile);
+          // console.log(this.state.imageFile);
+        };
+
+        reader.readAsDataURL(imageFile);
+
+        break;
+      }
+
+      default:
+        this.setState({
+          [name]: value,
+        });
+    }
   };
 
   handleCategorySelect = id => {
@@ -73,6 +144,7 @@ class AddDishContainer extends Component {
       ...INITIAL_STATE,
       availableingredients,
     });
+    this.imgFileRef.current.value = '';
   };
 
   handleSubmit = e => {
@@ -80,24 +152,28 @@ class AddDishContainer extends Component {
     const {
       name,
       price,
-      image,
+      imageFile,
+      imageUrl,
       description,
       selectedIngredients,
       category,
     } = this.state;
+
     const { onAddNewMenuItem, onGoBack } = this.props;
     if (!category) {
       return alert('specify category');
     }
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('price', price);
+    formData.append('description', description);
+    formData.append('imageUrl', imageUrl);
+    formData.append('imageFile', imageFile);
+    formData.append('selectedIngredients', selectedIngredients);
+    formData.append('category', category);
+
     this.toggleLoading();
-    return apiPostMenuItem({
-      name,
-      price,
-      image,
-      description,
-      ingredients: [...selectedIngredients],
-      category,
-    })
+    return apiPostMenuItem(formData)
       .then(response => {
         if (response.status === 201) {
           onAddNewMenuItem(response.data.menuItem);
@@ -131,6 +207,7 @@ class AddDishContainer extends Component {
       <>
         {isLoading && <Spinner />}
         <AddDishForm
+          imgFileRef={this.imgFileRef}
           props={this.state}
           onChange={this.handleChange}
           onReset={this.handleReset}
