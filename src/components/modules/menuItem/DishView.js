@@ -6,7 +6,13 @@ const Dish = ({ currentDish, id, onAddToCart }) => (
   <div className={styles.dish_details}>
     <img
       className={styles.dish__image}
-      src={currentDish.image}
+      src={
+        currentDish.image
+          ? `data:image/png;base64,${Buffer.from(
+              currentDish.image.data.data,
+            ).toString('base64')}`
+          : null
+      }
       alt={currentDish.name}
     />
     <h2 className={styles.dish__name}> {currentDish.name} </h2>

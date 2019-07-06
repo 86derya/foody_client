@@ -79,15 +79,8 @@ class AddDishContainer extends Component {
         if (this.imgFileRef.current.files[0]) {
           console.log(this.imgFileRef.current.files.length);
           this.imgFileRef.current.value = '';
-          // this.imgFileRef.current.files.entries();
-          // this.imgFileRef.current.files[0] = null;
-          // console.log(this.imgFileRef.current.files.length);
         }
-        // this.imgFileRef.current.files.length
-        //   ? (this.imgFileRef.current.files.length = 0)
-        //   : null;
 
-        // console.log(this.imgFileRef.current.files.length);
         this.setState({
           imageFile: '',
           imagePreviewfromFile: '',
@@ -98,7 +91,7 @@ class AddDishContainer extends Component {
       case 'imageFile': {
         const reader = new FileReader();
         const imageFile = e.currentTarget.files[0];
-        // const { imageFile } = this.state;
+
         // handle "file is not selected"
         if (!imageFile) {
           this.setState({
@@ -115,9 +108,6 @@ class AddDishContainer extends Component {
             imageFile,
             imagePreviewfromFile: reader.result,
           });
-
-          // console.log(imageFile);
-          // console.log(this.state.imageFile);
         };
 
         reader.readAsDataURL(imageFile);

@@ -48,7 +48,18 @@ const CartView = ({
           }}
           className={styles.cartTable_dishLink}
         >
-          <img src={image} alt={name} width="60" height="60" />
+          <img
+            src={
+              image
+                ? `data:image/png;base64,${Buffer.from(
+                    image.data.data,
+                  ).toString('base64')}`
+                : null
+            }
+            alt={name}
+            width="60"
+            height="60"
+          />
           {name}
         </Link>
       </td>

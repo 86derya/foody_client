@@ -13,10 +13,17 @@ const MenuGridCard = ({
   const dishImg = (
     <img
       className={styles.menu_card_image}
-      src={image || imageUrl || imagePreviewfromFile}
+      src={
+        image
+          ? `data:image/png;base64,${Buffer.from(image.data.data).toString(
+              'base64',
+            )}`
+          : null || imageUrl || imagePreviewfromFile
+      }
       alt="dish_photo"
     />
   );
+
   const dishName = <p className={styles.menu_card_title}> {name} </p>;
   const dishPrice = (
     <p className={styles.menu_card_price}>
